@@ -1,0 +1,134 @@
+<!-- Navbar -->
+
+<div class="container">
+
+<nav class="navbar navbar-default">
+
+  <!--NOTE: container-fluid allows the screen to be minimized without moving elements inside -->
+  <div class="container-fluid">
+   
+
+      <!-- CBS News logo -->
+       
+  
+      <a class="navbar-brand" href="#"><img src="images/cbs.png" class="img-responsive" height="100px" width="100px" alt="Responsive image"></a>
+     
+  
+    <ul class="nav navbar-nav">
+
+	  <li> <a class="not-active"> <h3 id="title"> MongoScraper </h3> </a> </li>
+      <li id="r2"><a href="/"> <h3 class="home"> Home   </h3> </a></li>
+      <li id="r3"><a href="#"> <h3 class="savedArticles"> Saved Articles </h3> </a></li>
+     
+
+    </ul>
+  </div>
+</nav>
+
+
+
+
+<!-- Body -->
+
+
+	<!-- Background image -->
+	<img src="images/background.jpg" class="img-responsive backgroundImg"  alt="Responsive image">
+
+
+
+	<!-- where we store 20 articles. Default No articles in our table -->
+	<table class="articles">
+
+		<thead>
+	
+				<!-- Default row with No Articles yet -->
+				
+		</thead>
+
+		<tbody>
+		{{#if savedArticles}}
+			<!-- Where we dump 20 articles when user hits [Scrape Aricles] button -->
+			{{#each savedArticles}}
+				<tr>
+
+					<ul class='list-group ul2'>
+
+						<li class='list-group-item active header'>  {{this.title}} 
+							<div class="buttonDiv">
+							 	
+							 	<button type='button' class='btn articleNotesButton btn-success' data-id={{this._id}}> 
+									Article Notes
+							 	</button> 
+
+								<button type='button' class='btn deleteButton btn-danger' data-id={{this._id}}> 
+									Delete
+								</button>
+
+						    </div>
+						</li>
+
+						<li class='list-group-item body'> {{this.link}} </li>
+					</ul>
+				</tr>
+
+
+
+
+			{{/each}}
+		{{else}}
+			<tr> 
+					
+					<th id="noArticles2">
+						<div> <h3> Uh Oh. Looks No Saved Articles.</h3> </div>
+					</th>
+					
+				</tr>
+		{{/if}}
+
+		</tbody>
+	</table>
+
+
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <button type="button" class="close exit" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+
+        <h4 class="modal-title">Article Note For: <span id="articleId"> </span> </h4>
+      
+      </div>
+
+      <div class="modal-body">
+
+      	 <!-- Store Article notes here -->
+      	 <div class="jumbotron">
+
+ 				<span id="note">  </span>
+
+		 </div>
+
+      	 <br>
+
+         <textarea id="noteTextarea" rows="4" cols="50"> </textarea>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default exit" data-dismiss="modal">Close</button>
+
+        <!-- Insert a button with the Id of particular article you want to save -->
+        <span id="saveButton"> </span>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+</div><!-- End Container -->

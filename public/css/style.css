@@ -1,0 +1,143 @@
+body
+{
+	background: url("../images/entireBackground.jpg") no-repeat;
+
+  /* Allows background image to fit perfectly on Computer screen, Ipad Screen, & Iphone Screen without any white space */
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+
+
+}
+
+
+.navbar
+{
+	background: #195299;
+	
+	height: 100px;
+
+	overflow: hidden;
+}
+
+.home, .savedArticles
+{
+	color: white;
+}
+
+#title
+{
+	color: white;
+}
+
+/* Mongo Scraper disables <a> link cursor */
+.not-active 
+{
+   pointer-events: none;
+   cursor: default;
+}
+
+#scrapeButton
+{
+	margin-top: 10px;
+}
+
+/* This also helps with minimizing screen where <li> items &&
+   button properly covered and not moved out of place
+*/
+.container
+{
+	width: 1902px;
+
+}
+
+.backgroundImg
+{
+	position: relative;
+	bottom: 21px;
+	
+	width: 1871px;
+	height: 650px;
+}
+
+/* Controlls the width of table under (Saved Articles page) & centering it */
+.ul2
+{
+	width: 900px;
+	margin: 15px auto;
+}
+/* width of each table(20 articles inserted) */
+table
+{
+	/* center each table item(article) */
+	margin: 0 auto;
+
+	width: 900px;
+}
+
+#noArticles, #noArticles2
+{
+	background: red;
+	color: white;
+}
+
+/* color of list group(20 article tables) */
+.header
+{
+	color: white;
+}
+
+.body
+{
+	color: black;
+}
+
+/* div border for note */
+.jumbotron
+{
+
+
+    width: 372px;
+    height: 25px;
+}
+
+.insertNote
+{
+	text-align: center;
+}
+
+
+/*[Save Article] index.handlebars */
+.saveButton
+{
+	position: absolute;
+	right: 0;
+	bottom: 5px;
+}
+
+/*[Article Note] && [Delete] saved.handlebars */
+.buttonDiv
+{
+	position: absolute;
+	right: 0;
+	bottom: 5px;
+}
+
+@media screen and (max-width: 768px)
+{
+	
+
+	/* This allows the screen minimize overlap affect meaning
+	   have the screen cover menu options as we minimize */
+	li
+	{
+		float: left;
+
+	}
+
+	
+
+
+
+}

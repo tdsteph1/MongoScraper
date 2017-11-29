@@ -1,0 +1,78 @@
+<!-- Navbar -->
+
+<div class="container">
+
+<nav class="navbar navbar-default">
+
+  <!--NOTE: container-fluid allows the screen to be minimized without moving elements inside -->
+  <div class="container-fluid">
+   
+
+      <!-- CBS News logo -->
+      <a class="navbar-brand" href="#"><img src="images/cbs.png" class="img-responsive" height="100px" width="100px" alt="Responsive image"></a>
+     
+  
+    <ul class="nav navbar-nav">
+
+	  <li> <a class="not-active"> <h3 id="title"> MongoScraper </h3> </a> </li>
+      <li id="r2"><a href="/"> <h3 class="home"> Home   </h3> </a></li>
+      <li id="r3"><a href="/saved"> <h3 class="savedArticles"> Saved Articles </h3> </a></li>
+      <li id="r4"><a href="#">  <button type="button" id="scrapeButton" class="btn btn-danger btn-lg"> Scrape New Article </button>  </a></li>
+     
+
+    </ul>
+  </div>
+</nav>
+
+
+
+<!-- Body -->
+
+
+	<!-- Background image -->
+	<img src="images/background.jpg" class="img-responsive backgroundImg"  alt="Responsive image">
+
+
+
+	<!-- where we store 20 articles. Default No articles in our table -->
+	<table class="articles">
+
+		<thead>
+
+				<!-- Default row with No Articles yet -->
+				<tr> 
+					<th id="noArticles">
+						<div> <h3> Uh Oh. Looks like we son't have any new articles </h3> </div>
+					</th>
+				</tr>
+		</thead>
+
+		<tbody>
+
+			<!-- Where we dump 20 articles when user hits [Scrape Aricles] button -->
+
+		</tbody>
+	</table>
+
+	  
+
+<!-- Displays Modal(20 Articles Scraped) message -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">CBS Mongo Scraper</h4>
+      </div>
+      <div class="modal-body">
+        <h3> 20 articles scraped </h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</div><!-- End Container -->
