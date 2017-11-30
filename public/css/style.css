@@ -1,6 +1,6 @@
 body
 {
-	background: url("../images/entireBackground.jpg") no-repeat;
+	background: url("../images/entireBackground.jpg");
 
   /* Allows background image to fit perfectly on Computer screen, Ipad Screen, & Iphone Screen without any white space */
 	-webkit-background-size: cover;
