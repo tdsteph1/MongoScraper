@@ -16,7 +16,7 @@ var db = require("./models");
 
 //initialize express
 var app = express();
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
@@ -33,7 +33,7 @@ app.use(express.static("public"));
 //Set up mongoose & connect to mongoDB
 mongoose.Promise = Promise;
 
-mongoose.connect("mongodb://localhost/MongooseScraper",
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/MongooseScraper",
 {
 	useMongoClient: true
 });
