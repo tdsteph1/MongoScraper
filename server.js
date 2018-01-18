@@ -38,6 +38,52 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/MongooseScraper
 	useMongoClient: true
 });
 
+
+//Scrape All Article at (www.cbsnews.com)
+app.get("/scrape", function(req, res)
+{
+	//First we grab the body of the HTML request
+	request("http://www.cbsnews.com/", function(error, response, html) 
+	{
+		//Then we load that into cheerio and save it to $ for a shorthand selector
+		var $ = cheerio.load(html);
+
+		//Now, we grab every h2 within an article tag. (each) is a for loop and
+		//dynamically adds results(article) object for each article iteration.
+		$("h3").each(function(i, element)
+		{
+			//save an empty result object
+			var result = {};
+
+			result.title = $(this).text();
+			result.link = "https://www.cbsnews.com/" + $(this).parent("a").attr("href");
+
+			console.log("title");
+			console.log(result.title);
+			console.log("link");
+			console.log(result.link);
+
+
+			//Create a new Article using the (result) object built.
+			//This creates (articles) collection AND stores (result.title) & (result.link)
+			//in the articles collection/table
+			db.Article.create(result).then(function(dbArticle)
+			{
+
+				//If we were able to successfully scrape & save an article
+				res.json(dbArticle);
+
+			}).catch(function(err)
+			{
+				//ERROR
+				res.json(err);
+			});
+			
+		});
+	});
+});
+
+
 //Send User to (index.handlebars)
 app.get("/", function(req, res) 
 {
@@ -173,6 +219,7 @@ app.post("/deleteNote/:id", function(req, res)
 //		  link twice in order for updates to properly work. 
 app.get("/saved", function(req, res)
 {
+ //dbArticles returns (articles) objects from MongoDB only with field(saved: true)
  db.Article.find({"saved": true}).then(function(dbArticle)
  {
  	console.log(dbArticle);
@@ -181,6 +228,7 @@ app.get("/saved", function(req, res)
  	{
  		savedArticles: dbArticle
  	}
+ 	
     //If we were able to successfully find articles,
     //then display (index.handlebars) with all articles found at
     //http://www.cbsnews.com.
@@ -190,43 +238,6 @@ app.get("/saved", function(req, res)
   });
 });
 
-//Scrape All Article at (www.cbsnews.com)
-app.get("/scrape", function(req, res)
-{
-	//First we grab the body of the HTML request
-	request("http://www.cbsnews.com/", function(error, response, html) 
-	{
-		//Then we load that into cheerio and save it to $ for a shorthand selector
-		var $ = cheerio.load(html);
-
-		//Now, we grab every h2 within an article tag
-		$("h3").each(function(i, element)
-		{
-			//save an empty result object
-			var result = {};
-
-			result.title = $(this).text();
-			result.link = "https://www.cbsnews.com/" + $(this).parent("a").attr("href");
-
-
-			//Create a new Article using the (result) object built.
-			//This creates (articles) collection AND stores (result.title) & (result.link)
-			//in the articles collection/table
-			db.Article.create(result).then(function(dbArticle)
-			{
-
-				//If we were able to successfully scrape & save an article
-				res.json(dbArticle);
-
-			}).catch(function(err)
-			{
-				//ERROR
-				res.json(err);
-			});
-			
-		});
-	});
-});
 
 //Obtain all scraped articles
 app.get("/articles", function(req, res)

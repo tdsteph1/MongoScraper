@@ -112,7 +112,7 @@ $(document).on("click", ".articleNotesButton", function()
 		//article note we are saving which is connected to chosen article.
 		$("#saveButton").append("<button data-id='" + thisId + "' type='button' class='btn btn-primary saveNoteButton'>Save Note</button>");
 
-		//If there's a note in the article already then display it
+		//If (note !NULL) OR  there's a note in the article already then display it
 		if(data.note)
 		{
 
@@ -155,7 +155,8 @@ $(document).on("click", ".saveNoteButton", function()
 {
 	//grab the id of id associated with the article from the submit button
 	var thisId = $(this).attr("data-id");
-	console.log("saveNOte");
+
+	console.log("saveNote");
 	console.log(thisId);
 
 
@@ -203,7 +204,8 @@ $(document).on("click", ".saveNoteButton", function()
 });
 
 
-//When user clicks on [Delete] Button at (saved.handlebars)
+//When user clicks on [Delete] Button at (saved.handlebars) 
+//to delete entire article in SavedArticles page
 $(document).on("click", ".deleteButton", function()
 {
 	var thisId = $(this).attr("data-id");
