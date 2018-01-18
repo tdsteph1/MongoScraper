@@ -65,4 +65,4 @@ When the user saves a note for a particular article, we create a new field calle
 A new note is generated when the user clicks the save note button and updates the database. Now that the note is no longer null we can now display the note.
 
 ![Img10](https://github.com/tdsteph1/MongoScraper/blob/master/public/images/Img10.png)
-User view note that was previously saved for a particular article.
+User views the note that was previously saved for a particular article.
